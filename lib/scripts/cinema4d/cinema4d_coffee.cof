@@ -1,0 +1,49 @@
+// Attention! Due to the way that COFFEE is fucked up, this might have rounding errors
+// when sampling frames. Create a COFFEE tag and attach it to object.
+main(doc,op)
+{
+  // Which frame to sample. Grab this from the userattr of the COFFEE tag!
+  var cofy = op->GetFirstTag();
+  
+  // Gotcha - when rendering tags get reordered and coffee tag might not come first,
+  // so walk the fucking linked list until we arrive at the tag
+  while(cofy) {
+ 		if(instanceof(cofy, CoffeeExpressionTag)) break; 
+ 		cofy = cofy->GetNext(); 
+  }
+  
+  if(!cofy) return;
+
+  // Float attr - Here we grab the value of the framecurve
+  var at =  cofy#ID_USERDATA:1;
+
+  // Sample FPS once 
+  var fps = doc->GetFps();
+  
+  // We need to pass a BaseTime object to the track sampler
+  var atTime = new(BaseTime);
+  atTime->SetFrame(at, fps);
+  
+  // Positions
+	var myT = op->GetFirstCTrack();
+  var posX = myT->GetValue(doc, atTime, fps);
+
+  myT = myT->GetNext();
+  var posY = myT->GetValue(doc, atTime, fps);
+
+  myT = myT->GetNext(); 
+  var posZ = myT->GetValue(doc, atTime, fps);
+
+  // Then rotations
+  myT = myT->GetNext(); 
+  var rotH = myT->GetValue(doc, atTime, fps);
+  
+  myT = myT->GetNext(); 
+  var rotP = myT->GetValue(doc, atTime, fps);
+
+  myT = myT->GetNext(); 
+  var rotB = myT->GetValue(doc, atTime, fps);
+
+  op->SetPosition(vector(posX, posY, posZ));
+	op->SetRotation(vector(rotH, rotP, rotB));
+}

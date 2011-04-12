@@ -1,0 +1,102 @@
+// framecurveApplyTimewarp script by Sebastian van Hesteren, Koen Hofmeester and Julik Tarkhanov.
+// Body and soul of the framecurve concept.
+//
+// Usage: in File put a framecurve text file with tuples of "at_frame source_frame".
+// for ex.: 
+// 1 4.55556
+// 2 5.22322
+// 3 6.45454
+// etc.
+// in Object put object whose animation curves will be timewarped
+// 
+// run with: framecurveApplyTimewarp
+
+global proc framecurveApplyTimewarp() {
+	
+	if (`window -ex framecurveApplyTimewarpWin`){
+		deleteUI framecurveApplyTimewarpWin;
+	}
+	global string $fileList = "*.txt";
+	window -title "framecurveApplyTimewarp" -wh 400 300 framecurveApplyTimewarpWin;
+	columnLayout;
+	textFieldGrp -label "File" -text "" framecurveFileField;
+	
+	
+	//version check. If maya 2011 or higher, use fileDialog2 instead of fileBrowserDialog
+	if (getApplicationVersionAsFloat() >= 2011) {
+		button -label "Select a framecurve file" -command "textFieldGrp -e -tx `fileDialog2 -ff $fileList -fm 1` framecurveFileField ";
+	}
+	else {
+		button -label "Select a framecurve file" -command "fileBrowserDialog -m 0 -an \"Get Warp File\" -om \"Import\" -fc \"fcTimeGetFile\";";
+	}
+		textFieldGrp -label "Object to timewarp" -text "" framecurveObjectToWarp;
+	button -label "Grab selected object" -command "string $sel[] = `ls -sl`; textFieldGrp -e -tx $sel[0] framecurveObjectToWarp;";
+	button -label "Apply framecurve" -command "fcWarpTime";
+
+	showWindow framecurveApplyTimewarpWin;
+}
+
+//procedure for old fileBrowserDialog
+global proc fcTimeGetFile(string $filename, string $filetype) {
+
+	textFieldGrp -e -tx $filename framecurveFileField;
+		
+}
+
+// Check if the string is not a comment and not empty
+proc int fcStringIgnored(string $str) {
+    if (size($str) == 0) return 1;
+    if (startsWith($str, "#")) return 1;
+    return 0;
+}
+
+
+global proc fcWarpTime() {
+	string $warpConnections[];
+	string $warpFilePath = `textFieldGrp -q -tx framecurveFileField`;
+	string $warpObject = `textFieldGrp -q -tx framecurveObjectToWarp`;
+
+    // Create a Time node and animate it. This is the only node that has a AnimCurveTT as
+    // it's animation curve and this is THE curve type we need to connect to other curve's input
+    // socket
+	string $timeNode = `createNode time -n ($warpObject + "_TimeWarp")`;
+	$warpConnections = `listConnections -t animCurve $warpObject`;
+
+	$fId = `fopen $warpFilePath "r"`;
+	
+	string $line;
+	int $frameNo = 0;
+	string $toks[];
+	
+	while(`feof $fId` == 0) {
+		$line = `fgetline $fId`;
+		// Skip comment lines
+		if(!fcStringIgnored($line)) {
+			tokenize($line, $toks);
+			int $frameNo = $toks[0];
+			float $frameValue = $toks[1];
+			currentTime $frameNo;
+			setAttr ($timeNode + ".outTime") $frameValue;
+			// Framecurve spec enforces LINEAR interpolation!
+			setKeyframe  -inTangentType "linear" -outTangentType "linear" ($timeNode + ".outTime");
+		}
+	}
+	fclose $fId;
+	
+	string $driverCurves[] = `listConnections -t animCurve $timeNode`;
+	string $frameCurve = $driverCurves[0];
+	
+	// Now the pain. Since now the Time node does not work with it's cool OutTime parameter what we have to do is reconnect
+	// the output of the time curve DIREKKTLY to the other curve's inputs! Yum! Fucking Maya fucking bandaids.
+	// Of course the gothic rectocenctric MEL process does not allow us to just create a node and fill it with keyframes, and then
+	// attach (since all USEFUL data in Maya is opaque and not script-modifiable).
+	for ($each in $warpConnections) {
+		print(`connectAttr -f ($frameCurve + ".output") ($each + ".input")` + "\n");
+	}
+	
+	// And get rid of the time node which we don't need anymore. Phew that sucked!
+	delete $timeNode;
+}
+
+
+framecurveApplyTimewarp();

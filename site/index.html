@@ -1,0 +1,178 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+ <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>Flot Examples</title> 
+    	<style type='text/css'> 
+    @import url("http://guerilla-di.org/styling.css");
+    	</style>
+    	
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/excanvas.min.js"></script><![endif]--> 
+    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.js"></script> 
+    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script> 
+ </head> 
+    <body class="def">
+    <div id="cnt">
+    <p id='nav'> 
+    		<span>
+    		<a href='/'>framecurve</a> 
+    		</span> 
+    </p>
+      
+    <h1>What is a framecurve?</h1>
+    
+    <p>A framecurve is a type of animation curve that represents a variable-speed timewarp. That is, a timewarp where footage accelerates
+      and slows down. It's called a <b>frame curve</b> because instead of operating with changing <b>speed</b> values it operates in absolute
+      <b>frame correlations</b> - it gives you a table of relationships from the <b>frame in your scene</b> to a <b>frame in your animation or video.</b>
+    </p>
+    
+    <p>We call the destionation frame in your scene the <b>at_frame</b> parameter, and the frame from which you sample the animation
+      <b>use_frame</b>
+    
+    
+    <h1>Typical framecurves</h1> 
+    <p>
+      Here's a small demo how some framecurves would look in your animation channels editor.
+      On the X axis is the <b>at_frame</b> (your timebar). On the Y axis - <b>use_frame</b> the frames you
+      are sampling from the original animation or video stream. If you ever used a retiming plugin you probably recognize that.
+    </p> 
+ 
+    <div id="placeholder" style="width:750px;height:300px"></div> 
+  
+    <p>Makes sense? Before you ask, for framecurves we explicitly <b>never use</b> spline interpolations, even though they would give
+      a smoother curve - that because <i>every animation package interpolates curves differently</i> and we cannot reverse-engineer
+      every possible channel editor in existence today.</p>
+      
+    <h1>What we offer</h1>
+    
+    <p>A concrete, documented, machine- and human-readable format for outputting a framecurve, and a set of scripts for today's most popular
+      animation and compositing packages for applying that curve to animation data.</p>
+    
+    <h2>How does it look?</h2>
+    
+    <p>Extremely simple. Here is a framecurve:</p>
+
+<code><pre>
+# at_frame	use_frame
+1	1.00000
+25	25.00000
+50	70.54323
+125	125.00000
+</pre></code>
+    
+    <p>Store that to a file and use any of our scripts to apply it to your objects. You can also download it.</p>
+    
+    <h1>How to use a framecurve file in your application</h1>
+    
+    <h2>Nuke</h2>
+      <h3>Importing the curve</h3>
+      <p>To import a framecurve file into Nuke, select yuour animation channel and pick the "Import Time+ascii" option. This will properly import
+      a framecurve file into any animation channel you like.</p>
+      
+      <h3>Applying the curve</h3>
+      <p>To retime any animation channel, go to "Add expression" and between parentheses supply a handle to the knob containing your framecurve.</p>
+      <p>We also offer a sample Nuke script that shows how such a setup looks</p>
+      
+    <h2>Maya</h2>
+      <h3>Importing and applying the curve</h3>
+      
+      <p>Run <tt>framecurve --script maya</tt> to get a MEL script you can put into your Maya shelf. Pick an object that is animated, and pick
+        this script. The framecurve will be applied as <i>input</i> to <i>every animation curve</i> that drives the object you selected.</p>
+      
+      <p>Here's how a standard Hypergraph hierarchy might look for an animated object.</p>
+      
+      <img src="pics/maya_standard.png" />
+      
+      <p>Afte running the script, a framecurve will be created and plugged into the <i>input</i> connection of the animation curves of the object you retimed</p>
+      <img src="pics/maya_retimed.png" />
+      
+      <p>If you want to look at the test scene for this kind of setup, type <tt>framecurve -samplescene maya sampleScene.ma</tt> to output a sample scene.</p>
+      
+    <h2>Houdini</h2>
+      <h3>Importing and applying the curve</h3>
+      
+      <p>Run <tt>framecurve --script houdini</tt> to get a Python script that creates a Framecurve gizmo. Run that in your chopnet, select the gizmo
+        and pick the framecurve file that you want to use. An animation curve will be created and </p>
+    
+    <h2>Flame</h2>
+    
+    <p>Run <tt>framecurve --to flame</tt>. This will emit a setup for the Timewarp module. Copy the "Frame" channel of the timewarp into, say, an Action setup,
+      name it "TIME_DRIVER" and make a copy of an object you want to timewarp. Then enter the following expression into the channel editor of that object:</p>
+      
+    <code>eval(Axis1, TIME_DRIVER.position.x)</code>
+    
+    <p>substituting "Axis1" for the name of the object you've copied. This might be confusing for people who never used this kind of a setup so we
+      offer a simple Action setup to demonstrate a framecurve in action.</p>
+    
+    
+<script type="text/javascript"> 
+$(function () {
+    var d0 = [
+      [1,1], [160, 160]
+    ];
+    
+    var d1 = [];
+    d1.push([1, 1]);
+    d1.push([160, 320]);
+    
+    var d2 = [];
+    d2.push([1, 1]);
+    d2.push([20, 20]);
+    d2.push([30, 26.1]);
+    d2.push([40, 28]);
+    d2.push([60, 28.8]);
+    d2.push([65, 29]);
+    d2.push([70, 29.5]);
+    d2.push([80, 31.5]);
+    d2.push([90, 34]);
+    d2.push([95, 37]);
+    d2.push([100, 42.5]);
+    d2.push([105, 52.5]);
+    d2.push([110, 64.5]);
+    d2.push([115, 80]);
+    d2.push([120, 102]);
+    d2.push([160, 320]);
+    
+    var d3 = [];
+    d3.push([1, 1]);
+    d3.push([80, 230]);
+    d3.push([85, 241]);
+    d3.push([90, 250]);
+    d3.push([95, 258]);
+    d3.push([100, 265]);
+    d3.push([160, 320]);
+    
+    $.plot($("#placeholder"), [
+        { label: "160 frames - original speed",  data: d0},
+        { label: "320 frames - speed 200%",  data: d1},
+        { label: "320 frames clip - slowdown in the middle",  data: d2},
+        { label: "320 frames clip - slowly comes to a stop",  data: d3},
+    ], {
+        series: {
+            lines: { show: true },
+            points: { show: true }
+        },
+        xaxis: {
+            ticks: 10,
+            max: 160,
+            label: "at_frame"
+        },
+        yaxis: {
+            ticks: 10,
+            min: 1,
+            max: 320,
+            label: "use_frame"
+        },
+        legend: { 
+            position: "nw"
+        },
+        grid: {
+            backgroundColor: { colors: ["#fff", "#eee"] }
+        }
+    });
+});
+</script> 
+ 
+</div></body> 
+</html>
