@@ -65,8 +65,15 @@ global proc fcApplyCurve(string $tCurve, string $toObject) {
 	// then get to the image plane
 	for ($shape in (`listRelatives -shapes  $toObject`)) {
 		if("camera" == `nodeType $shape`) {
+			// The camera might have animation on the FOV, so recursively apply
+			// to it as well
+			fcApplyCurve($tCurve, $shape);
+			
+			// Imageplanes do not really have curves - they are coupled to a frame
+			// expression, so we will override that explicitly
 			$imagePlanes = `listConnections -type "imagePlane" $shape`;
 			for ($plane in $imagePlanes) {
+				// resultCurveTimeToUnitless will be inserted as adapter
 				print("Retiming image plane $plane");
 				print(`connectAttr -f ($tCurve + ".output") ($plane + ".frameExtension")` + "\n");
 			} 
