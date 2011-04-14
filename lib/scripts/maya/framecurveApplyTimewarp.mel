@@ -71,8 +71,10 @@ global proc fcApplyCurve(string $tCurve, string $toObject) {
 		// This is a camera
 		if("camera" == `nodeType $shape`) {
 			$imagePlanes = `listConnections -type "imagePlane" $shape`;
-			print("Connecting timewarp curve to image plane");
-			print(`connectAttr -f ($tCurve + ".output") ($imagePlanes[0] + ".frameExtension")` + "\n");
+			for ($plane in $imagePlanes) {
+				print("Connecting timewarp curve to image plane $plane");
+				print(`connectAttr -f ($tCurve + ".output") ($plane + ".frameExtension")` + "\n");
+			} 
 		}
 	}
 }
