@@ -50,6 +50,32 @@ proc int fcStringIgnored(string $str) {
     return 0;
 }
 
+global proc fcApplyCurve(string $tCurve, string $toObject) {
+	$warpConnections = `listConnections -t animCurve $toObject`;
+	
+	// Feed the output of the time curve to inputs of all anim curves attached to the object.
+	// Anim curve's input is the time at which the anim curve is sampled.
+	for ($each in $warpConnections) {
+		print("Connecting timewarp curve to $each");
+		print(`connectAttr -f ($tCurve + ".output") ($each + ".input")` + "\n");
+	}
+	
+	// Special case - if this is a camera we can also timewarp the image plane itself! which is awesome
+	// to do this, get to the shape first
+	// then get to the image plane
+	string $shapes[];
+	string $imaegPlanes[];
+	
+	$shapes = `listRelatives -shapes  $toObject`;
+	for ($shape in $shapes) {
+		// This is a camera
+		if("camera" == `nodeType $shape`) {
+			$imagePlanes = `listConnections -type "imagePlane" $shape`;
+			print("Connecting timewarp curve to image plane");
+			print(`connectAttr -f ($tCurve + ".output") ($imagePlanes[0] + ".frameExtension")` + "\n");
+		}
+	}
+}
 
 global proc fcWarpTime() {
 	string $warpConnections[];
@@ -58,12 +84,13 @@ global proc fcWarpTime() {
 
     // Create a Time node and animate it. This is the only node that has a AnimCurveTT as
     // it's animation curve and this is THE curve type we need to connect to other curve's input
-    // socket
+    // socket. Since now the Time node does not work with it's cool OutTime parameter what we have to do is reconnect
+	// the output of the time curve directly to the other curve's inputs! Fucking Maya bandaids.
+	// Of course the gothic rectocenctric MEL process does not allow us to just create a node and fill it with keyframes, and then
+	// attach (since all USEFUL data in Maya is opaque and not script-modifiable).
 	string $timeNode = `createNode time -n ($warpObject + "_TimeWarp")`;
-	$warpConnections = `listConnections -t animCurve $warpObject`;
-
-	$fId = `fopen $warpFilePath "r"`;
 	
+	$fId = `fopen $warpFilePath "r"`;
 	string $line;
 	int $frameNo = 0;
 	string $toks[];
@@ -83,18 +110,12 @@ global proc fcWarpTime() {
 	}
 	fclose $fId;
 	
+	// Now we have a curve we can actually use
 	string $driverCurves[] = `listConnections -t animCurve $timeNode`;
 	string $frameCurve = $driverCurves[0];
 	
-	// Now the pain. Since now the Time node does not work with it's cool OutTime parameter what we have to do is reconnect
-	// the output of the time curve DIREKKTLY to the other curve's inputs! Yum! Fucking Maya fucking bandaids.
-	// Of course the gothic rectocenctric MEL process does not allow us to just create a node and fill it with keyframes, and then
-	// attach (since all USEFUL data in Maya is opaque and not script-modifiable).
-	for ($each in $warpConnections) {
-		print(`connectAttr -f ($frameCurve + ".output") ($each + ".input")` + "\n");
-	}
+	fcApplyCurve($frameCurve, $warpObject);
 	
-	// And get rid of the time node which we don't need anymore. Phew that sucked!
 	delete $timeNode;
 }
 
