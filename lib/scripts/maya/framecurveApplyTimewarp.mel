@@ -11,12 +11,12 @@
 // 
 // run with: framecurveApplyTimewarp
 
-global proc framecurveApplyTimewarp() {
+global proc framecurveTimewarpDialog() {
 	
 	if (`window -ex framecurveApplyTimewarpWin`){
 		deleteUI framecurveApplyTimewarpWin;
 	}
-	global string $fileList = "*.txt";
+	global string $fcFileListPattern = "*.framecurve.txt";
 	window -title "framecurveApplyTimewarp" -wh 400 300 framecurveApplyTimewarpWin;
 	columnLayout;
 	textFieldGrp -label "File" -text "" framecurveFileField;
@@ -24,7 +24,7 @@ global proc framecurveApplyTimewarp() {
 	
 	//version check. If maya 2011 or higher, use fileDialog2 instead of fileBrowserDialog
 	if (getApplicationVersionAsFloat() >= 2011) {
-		button -label "Select a framecurve file" -command "textFieldGrp -e -tx `fileDialog2 -ff $fileList -fm 1` framecurveFileField ";
+		button -label "Select a framecurve file" -command "textFieldGrp -e -tx `fileDialog2 -ff $fcFileListPattern -fm 1` framecurveFileField ";
 	}
 	else {
 		button -label "Select a framecurve file" -command "fileBrowserDialog -m 0 -an \"Get Warp File\" -om \"Import\" -fc \"fcTimeGetFile\";";
@@ -85,12 +85,12 @@ global proc fcWarpTime() {
 	string $warpConnections[];
 	string $warpFilePath = `textFieldGrp -q -tx framecurveFileField`;
 	string $warpObject = `textFieldGrp -q -tx framecurveObjectToWarp`;
-
-    // Create a Time node and animate it. This is the only node that has a AnimCurveTT as
-    // it's animation curve and this is THE curve type we need to connect to other curve's input
-    // socket. Since now the Time node does not work with it's cool OutTime parameter what we have to do is reconnect
-	// the output of the time curve directly to the other curve's inputs! Fucking Maya bandaids.
-	// Of course the gothic rectocenctric MEL process does not allow us to just create a node and fill it with keyframes, and then
+	
+	// Create a Time node and animate it. This is the only node that has a AnimCurveTT as
+	// it's animation curve and this is THE curve type we need to connect to other curve's input
+	// socket. Since the Time node cannot feed anything since Maya 2011 (but can be created) what we have to do is reconnect
+	// the output of the animation curve of the time node directly to the other curve's inputs!
+	// Of course the gothic rectocenctric MEL process does not allow us to just create an AnimCurveTT node and fill it with keyframes, and then
 	// attach (since all USEFUL data in Maya is opaque and not script-modifiable).
 	string $timeNode = `createNode time -n ($warpObject + "_TimeWarp")`;
 	
@@ -124,4 +124,4 @@ global proc fcWarpTime() {
 }
 
 
-framecurveApplyTimewarp();
+framecurveTimewarpDialog();
