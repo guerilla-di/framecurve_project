@@ -56,7 +56,7 @@ global proc fcApplyCurve(string $tCurve, string $toObject) {
 	// Feed the output of the time curve to inputs of all anim curves attached to the object.
 	// Anim curve's input is the time at which the anim curve is sampled.
 	for ($each in $warpConnections) {
-		print("Connecting timewarp curve to $each");
+		print("Connecting timewarp curve to " + $each);
 		print(`connectAttr -f ($tCurve + ".output") ($each + ".input")` + "\n");
 	}
 	
