@@ -79,6 +79,8 @@ rollout roGDTimeWarp "GD_TIMEWARP" width:250 height:300
 		(
 			inputline = readline warpfileread
 			tokenize = filterString inputline "\t, "
+			
+			/* Skip everything that starts with a hashmark #*/
 			oldframe = tokenize[1]
 			newframe = tokenize[2]
 			
