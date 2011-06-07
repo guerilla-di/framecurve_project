@@ -17,34 +17,43 @@
 
 global proc framecurve.timewarpDialog() {
 	
-	if (`window -ex framecurveApplyTimewarpWin`){
-		deleteUI framecurveApplyTimewarpWin;
+	if (`window -ex shTimeWarperWin`){
+		deleteUI shTimeWarperWin;
 	}
-	global string $fcFileListPattern = "*.framecurve.txt";
-	window -title "Apply a framecurve timewarp file to selection" -wh 400 300 framecurveApplyTimewarpWin;
-	columnLayout;
-	textFieldGrp -label "File" -text "" framecurveFileField;
+	window -title "Apply framecurve timewarp" -s 0 -wh 300 150 shTimeWarperWin;
+	string $form = `formLayout`;
+	string $textbutFile  = `textFieldButtonGrp -cw 1 50 -label "File: " -buttonLabel "Browse" -buttonCommand "framecurve.getFile" framecurveFileField`;
+	string $textbutCam  = `textFieldButtonGrp -cw 1 50 -label "Object: " -buttonLabel "Get" -buttonCommand "string $sel[] = `ls -sl`; textFieldGrp -e -tx $sel[0] framecurveDestinationObjectField;" framecurveDestinationObjectField`;
+	string $butWarp = `button -label "Apply" -command "framecurve.applyTimewarp"`;
 	
-	
-	//version check. If maya 2011 or higher, use fileDialog2 instead of fileBrowserDialog
-	if (getApplicationVersionAsFloat() >= 2011) {
-		button -label "Select a framecurve file" -command "textFieldGrp -e -tx `fileDialog2 -ff $fcFileListPattern -fm 1` framecurveFileField ";
-	}
-	else {
-		button -label "Select a framecurve file" -command "fileBrowserDialog -m 0 -an \"Get Warp File\" -om \"Import\" -fc \"framecurve.getFileField\";";
-	}
-		textFieldGrp -label "Object to timewarp" -text "" framecurveObjectToWarp;
-	button -label "Grab selected object" -command "string $sel[] = `ls -sl`; textFieldGrp -e -tx $sel[0] framecurveObjectToWarp;";
-	button -label "Apply framecurve" -command "framecurve.applyTimewarp";
 
-	showWindow framecurveApplyTimewarpWin;
+	formLayout -edit
+	    -attachForm $textbutFile "top" 2
+		-attachForm $textbutFile "left" 2
+		-attachForm $textbutFile "right" 10
+		-attachForm $textbutCam "left" 2
+		-attachForm $textbutCam "right" 10
+		-attachForm $butWarp "right" 10
+		-attachForm $butWarp "left" 10
+		-attachForm $butWarp "bottom" 10
+		
+		-attachControl $textbutCam "top" 10 $textbutFile
+		-attachControl $butWarp "top" 10 $textbutCam
+	$form;
+
+
+	showWindow shTimeWarperWin;
 }
 
-//procedure for old fileBrowserDialog
-global proc framecurve.getFileField(string $filename, string $filetype) {
-
-	textFieldGrp -e -tx $filename framecurveFileField;
-		
+global proc framecurve.getFile() {
+    string $fileList = "*.framecurve.txt";
+    
+	if (getApplicationVersionAsFloat() >= 2011) {
+		textFieldButtonGrp -e -tx `fileDialog2 -ff $fileList -fm 1` framecurveFileField;
+	} else {
+	    string $loadfile = `fileDialog -t "Get Warp File" -dm $fileList -m 0`;
+	    textFieldButtonGrp -e -tx $loadfile framecurveFileField;
+	}
 }
 
 // Check if the string is not a comment and not empty
@@ -129,7 +138,7 @@ global proc framecurve.applyCurve(string $tCurve, string $toObject) {
 global proc framecurve.applyTimewarp() {
 	string $warpConnections[];
 	string $warpFilePath = `textFieldGrp -q -tx framecurveFileField`;
-	string $warpObject = `textFieldGrp -q -tx framecurveObjectToWarp`;
+	string $warpObject = `textFieldGrp -q -tx framecurveDestinationObjectField`;
 	
 	// Create a Time node and animate it. This is the only node that has a AnimCurveTT as
 	// it's animation curve and this is THE curve type we need to connect to other curve's input
@@ -175,4 +184,4 @@ global proc framecurve.applyTimewarp() {
 }
 
 
-// framecurve.timewarpDialog();
+framecurve.timewarpDialog();
