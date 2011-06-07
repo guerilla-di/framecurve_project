@@ -103,7 +103,7 @@ global proc framecurve.applyCurve(string $tCurve, string $toObject) {
 	// Feed the output of the time curve to inputs of all anim curves attached to the object.
 	// Anim curve's input is the time at which the anim curve is sampled.
 	for ($each in $warpConnections) {
-		print("Connecting timewarp curve to " + $each);
+		print("Connecting timewarp curve to " + $each + "\n");
 		print(`connectAttr -f ($tCurve + ".output") ($each + ".input")` + "\n");
 	}
 	
@@ -116,7 +116,7 @@ global proc framecurve.applyCurve(string $tCurve, string $toObject) {
 		if("camera" == `nodeType $shape`) {
 			// The camera might have animation on the FOV, so recursively apply
 			// to it as well
-			print("Applying timewarp curve to the camera shape of " + $shape);
+			print("Applying timewarp curve to the camera shape of " + $shape + "\n");
 			
 			framecurve.applyCurve($tCurve, $shape);
 			
@@ -124,11 +124,11 @@ global proc framecurve.applyCurve(string $tCurve, string $toObject) {
 			// expression, so we will override that explicitly
 			$imagePlanes = `listConnections -type "imagePlane" $shape`;
 			for ($plane in $imagePlanes) {
-				print("Applying timewarp curve to the camera shape of " + $shape);
+				print("Applying timewarp curve to the camera shape of " + $shape + "\n");
 				//
 				
 				// resultCurveTimeToUnitless will be inserted as adapter
-				print("Retiming image plane " + $plane);
+				print("Retiming image plane " + $plane + "\n");
 				print(`connectAttr -f ($tCurve + ".output") ($plane + ".frameExtension")` + "\n");
 			} 
 		}

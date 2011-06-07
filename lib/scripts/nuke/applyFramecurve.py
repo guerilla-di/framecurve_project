@@ -57,8 +57,12 @@ def apply_framecurve(toNode, framecurve_path):
                 k.setExpression("curve(framecurve(frame))")
 
 
-# Load the animation
-framecurve_path = nuke.getFilename("Select the framecurve file", "*.framecurve.txt", default="/", favorites="", type="", multiple=False)
-selected = filter(lambda n: n.Class() != "Viewer" and n.name() != "VIEWER_INPUT", nuke.selectedNodes())
-for n in selected:
-    apply_framecurve(n, framecurve_path) 
+def grab_file():
+    return nuke.getFilename("Select the framecurve file", "*.framecurve.txt", default="/", favorites="", type="", multiple=False)
+
+def apply_framecurve_from_file():
+    # Load the animation
+    framecurve_path = grab_file()
+    selected = filter(lambda n: n.Class() != "Viewer" and n.name() != "VIEWER_INPUT", nuke.selectedNodes())
+    for n in selected:
+        apply_framecurve(n, framecurve_path)

@@ -34,7 +34,7 @@ rollout roGDTimeWarp "GD_TIMEWARP" width:250 height:300
 			(
 				edtFile.text = loadpath
 			)	
-	)	
+	)
 	
 	on btnCam pressed do
 	(
@@ -68,26 +68,26 @@ rollout roGDTimeWarp "GD_TIMEWARP" width:250 height:300
 		/*SOME CLONING*/
 		clonecameras = maxOps.CloneNodes warpcamnode cloneType:#copy newNodes:&duplcam
 		newwarpcam = duplcam[1]
+		
 		/*TMP TRANSFORM STORE */
 		tmpstore = Point()
-		redrawFlag = keyboard.controlPressed
 		with redraw on 
 		with animate on 
 			
-
+		
+		local lastDestFrame
+		local lastValue
+		 
 		while not eof warpfileread do
 		(
 			inputline = readline warpfileread
 			tokenize = filterString inputline "\t, "
 			
-			/* Skip everything that starts with a hashmark #*/
-			oldframe = tokenize[1]
-			newframe = tokenize[2]
-			
 			/* BAKING THE CAMERA */
-			oldtime = oldframe as float
-			newtime = newframe as float
-			sliderTime = oldtime
+			destFrameNumber = tokenize[1] as float
+			sourceFrameNumber = tokenize[2] as float
+			
+			sliderTime = destFrameNumber
 			
 			/*COPY VALS BACK*/
 			with animate on at time newtime tmpstore.transform = at time oldtime newwarpcam.transform

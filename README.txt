@@ -12,12 +12,14 @@ computer.
 In the simplest terms, it's a linearly interpolated animation curve of "Use this frame of video or animation at that frame".
 For example, if you want to speed up some video that goes from frame 1 to frame 432 by 200%, you will have this as your framecurve:
 
-1 1.0
-216 432.0
+    1 1.0
+    216 432.0
 
 This assumes that you interpolate the needed frame number linearly between these frames. If you want some speedups and slowdowns that's easy:
 
-
+    1 1.0
+    103 50.0
+    216 432.0
 
 
 == SYNOPSIS:
@@ -29,7 +31,7 @@ This assumes that you interpolate the needed frame number linearly between these
 
 == REQUIREMENTS:
 
-* ruby, rubygems
+* ruby, rubygems to install the package
 * any package for which a framecurve plugin exists
 
 == INSTALL:
