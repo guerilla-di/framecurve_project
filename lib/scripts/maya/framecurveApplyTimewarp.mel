@@ -73,7 +73,7 @@ proc string[] framecurve.toggleImagePlanes(int $mode) {
             if (`attributeQuery -n $ip -ex "imageNameStash"`)   {
                 string $path = `getAttr ($ip+".imageNameStash")`;
                 setAttr -type "string" ($ip + ".imageName")  $path;
-                deleteAttr ($ip + ".imageNameStash") $path;
+                deleteAttr ($ip + ".imageNameStash");
             } else {
             //  warning("this image plane was never disabled");
             }
