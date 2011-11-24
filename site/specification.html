@@ -1,0 +1,67 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+ <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>Framecurve</title> 
+    	<style type='text/css'> 
+    @import url("http://guerilla-di.org/styling.css");
+    	</style>
+    	
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/excanvas.min.js"></script><![endif]--> 
+    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.js"></script> 
+    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script> 
+ </head> 
+    <body class="def">
+    <div id="cnt">
+    <p id='nav'> 
+			<span>
+				<a href='/'>home</a> 
+	    		<a href='/specification.html'>specification</a> 
+	    		<a href='/scripts.html'>scripts</a> 
+    		</span> 
+    </p>
+
+<h1>Framecurve specification</h1>
+
+<p>A framecurve file is a file with ASCII text data and it <b>must</b> have a double extension of <tt>.framecurve.txt</tt></p>
+
+<p>Inside the framecurve file there is a number of <tt>records</tt>, each line is a record. Records <b>must</b> be delimited by the <tt>CRLF</tt>
+line delimiters to facilitate editing the file on Windows.</p>
+
+<p>Each record can be either a <b>frame correlation record</b> or a <b>comment.</b> A comment is a line starting with a hashmark (<tt>#</tt>).</p>
+
+<code>
+   # This is a comment
+</code>
+
+<p>or a <b>frame correlation record</b>. A frame correlation record represents a record of two fields, having the format of</p>
+
+<code>
+   [destination_frame_integer][TAB][source_frame_float][CRLF]
+</code>
+
+<p>The destination frame <b>must</b> be an integer value specifying the destination frame in the edit. The source frame <b>must</b> be a floating point
+decimal value representing the frame that will be shown at this frame.</p>
+
+<p>The destination frame values <b>must</b> be consecutive (the destination frame number has to increase from record to record). This is not valid:</p>
+
+<code><pre>
+12	34.5
+8	20.5
+42	20.5
+</pre></code>
+
+<p>Destination frame values <b>must</b> be unique.</p> This is not valid:
+
+<code><pre>
+12	34.5
+12	20.5
+42	20.5
+</pre></code>
+
+<p>The first line of a framecurve file <b>should</b> include a comment line noting that this is a framecurve file, and it's <b>recommended</b> to
+include the interpretation of the record columngs as well. This is a recommended header.</p>
+
+</div></body> 
+</html>
