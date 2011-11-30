@@ -1,0 +1,51 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	background: rgb(240, 240, 240);
+}
+
+#cnt {
+	background: rgb(250, 250, 250);
+	border: 1px solid rgb(200, 200, 200);
+	margin: auto;
+	padding: 1em 3em;
+	width: 70%;
+	font-size: 1em;
+	line-height: 1.4em;
+}
+
+code {
+	font-size: 0.9em;
+	padding: 1em;
+	background: rgb(10,10,10);
+	color: white;
+	display: block;
+}
+code pre {
+	display: block;
+	padding: 0; margin: 0;
+	background: inherit;
+}
+
+#nav {
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 2em;
+}
+
+#nav span {
+  display: block;
+  float: left;
+  width: 33%;
+  text-align: center;
+  padding: 0; margin: 0;
+}
+
+#nav span a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Lucida Grande", Verdana;
+  border: 1px solid rgb(200,200,200);
+  border-bottom-width: 5px;
+  padding: .75em 0;
+  display: block;
+}

@@ -1,30 +1,26 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html> 
  <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
     <title>Framecurve</title> 
-    	<style type='text/css'> 
-    @import url("http://guerilla-di.org/styling.css");
-    	</style>
-    	
+    
+    <link rel="stylesheet" href="styles.css" />
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/excanvas.min.js"></script><![endif]--> 
     <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.js"></script> 
     <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script> 
+     <script src="reload.js"></script>
  </head> 
     <body class="def">
     <div id="cnt">
     <p id='nav'> 
-			<span>
-				<a href='/'>home</a> 
-	    		<a href='/specification-v1.html'>specification</a> 
-	    		<a href='/scripts.html'>scripts</a> 
-    		</span> 
+		<span><a href='/'>home</a></span> 
+		<span><a href='/specification-v1.html'>specification</a></span> 
+		<span><a href='/scripts.html'>scripts</a></span> 
     </p>
 
 <h1>Framecurve specification</h1>
 
-<p><b>Note:</b> the keywords <b>must, shall and may</b> are conforming their definition in the <a href="http://tools.ietf.org/html/rfc2119">RFC2119</a></p>
+<p><b>Note:</b> the keywords <b>must, shall and may</b> are to be interpreted according to their definitions in the <a href="http://tools.ietf.org/html/rfc2119">RFC2119</a></p>
 
 <h2>Abstract</h2>
 
@@ -119,5 +115,6 @@ of the file. The exporting software <b>must not</b> export destination frames be
 
 <p>For example, if you have a sequence of images starting with <tt>E09857574.0045.dpx</tt> and a framecurve refers to this sequence it's sensible to assume
 that the first available frame <b>is frame 45</b>, and not frame 1.</p>
+
 </div></body> 
 </html>
