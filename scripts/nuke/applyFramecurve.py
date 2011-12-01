@@ -1,6 +1,9 @@
 from __future__ import with_statement
 import nuke, nukescripts, os, re
 
+# framecurve in nuke python
+# for more info, see http://framecurve.org
+
 # On the current node, add a userknob for the framecurve
 def add_framecurve(onNode):
     framecurveKnob = nuke.Double_Knob("framecurve",  "timewarp frame")

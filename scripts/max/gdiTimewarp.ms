@@ -1,6 +1,6 @@
 /*
-GUERIILLA DI TIMEWARP IMPORTER
-v0.5, UNTESTED , TRANSFORMS ONLY! - last edit 05-6-2011
+framecurve importer
+v0.5, UNTESTED , TRANSFORMS ONLY!
 Koen Hofmeester 2011
 
 
