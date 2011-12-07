@@ -1,5 +1,7 @@
 import c4d
 
+# framecurve python C4D implementation
+# for more info, see http://framecurve.org
 def main():
     # Which frame to sample. Grab this from the userattr of the tag!
     obj = op.GetObject()

@@ -1,3 +1,8 @@
+// framecurve COFFEE implementation
+// for more info, see http://framecurve.org
+//
+//
+//
 // Attention! Due to the way that COFFEE is fucked up, this might have rounding errors
 // when sampling frames. Create a COFFEE tag and attach it to object.
 main(doc,op)

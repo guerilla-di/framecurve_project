@@ -1,30 +1,7 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
-<html> 
- <head> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-    <title>Framecurve</title> 
-    	<style type='text/css'> 
-    @import url("http://guerilla-di.org/styling.css");
-    	</style>
-    	
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/excanvas.min.js"></script><![endif]--> 
-    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.js"></script> 
-    <script language="javascript" type="text/javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script> 
- </head> 
-    <body class="def">
-    <div id="cnt">
-    <p id='nav'> 
-			<span>
-				<a href='/'>home</a> 
-	    		<a href='/specification-v1.html'>specification</a> 
-	    		<a href='/scripts.html'>scripts</a> 
-    		</span> 
-    </p>
-
 <h1>Framecurve specification</h1>
 
-<p><b>Note:</b> the keywords <b>must, shall and may</b> are conforming their definition in the <a href="http://tools.ietf.org/html/rfc2119">RFC2119</a></p>
+<p><b>Note:</b> the keywords <b>must, shall and may</b> are to be interpreted according to their definitions in the <a href="http://tools.ietf.org/html/rfc2119">RFC2119</a></p>
 
 <h2>Abstract</h2>
 
@@ -55,7 +32,7 @@ decimal floating point value representing the frame that will be shown at this f
 <p>The destination frame values <b>must</b> be consecutive (the destination frame number has to increase from record to record). This is not valid:</p>
 
 <code><pre>
-# http://framecurve.org/specification-v1.html
+# http://framecurve.org/specification-v1
 # at_frame use_frame_of_source
 # This is not valid
 12	34.520
@@ -66,7 +43,7 @@ decimal floating point value representing the frame that will be shown at this f
 <p>Destination frame values <b>must</b> be unique.</p>
 
 <code><pre>
-# http://framecurve.org/specification-v1.html
+# http://framecurve.org/specification-v1
 # at_frame use_frame_of_source
 # This is not valid
 12	34.1600982
@@ -78,7 +55,7 @@ decimal floating point value representing the frame that will be shown at this f
 include the interpretation of the record columns as well. This is a recommended header.</p>
 
 <code><pre>
-# http://framecurve.org/specification-v1.html
+# http://framecurve.org/specification-v1
 # at_frame use_frame_of_source
 12	34.5
 14	20.5
@@ -116,5 +93,6 @@ of the file. The exporting software <b>must not</b> export destination frames be
 
 <p>For example, if you have a sequence of images starting with <tt>E09857574.0045.dpx</tt> and a framecurve refers to this sequence it's sensible to assume
 that the first available frame <b>is frame 45</b>, and not frame 1.</p>
+
 </div></body> 
 </html>

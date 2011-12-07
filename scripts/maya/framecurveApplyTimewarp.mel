@@ -2,14 +2,9 @@
     
     framecurve MEL script by Sebastian van Hesteren, Koen Hofmeester and Julik Tarkhanov.
     Body and soul of the framecurve concept.
+    For more info, see http://framecurve.org
     
-    Usage: in File put a framecurve text file with tuples of "at_frame source_frame".
-    for ex.: 
-    1 4.55556
-    2 5.22322
-    3 6.45454
-    etc.
-    in Object put object whose animation curves will be timewarped
+    Usage: in File put a framecurve text file. In Object put object whose animation curves will be timewarped
     
     run with: framecurve.timewarpDialog()
 
