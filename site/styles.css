@@ -49,3 +49,21 @@ code pre {
   padding: .75em 0;
   display: block;
 }
+
+#initiative {
+  background: rgb(10,10,10);
+  overflow: auto;
+  color: white;
+}
+
+#initiative span {
+  display: block;
+  width: 24.9%;
+  border: 1px solid red;
+  margin-left: -1px;
+  float: left;
+  text-align: center;
+}
+#initiative span a {
+  color: inherit;
+}
