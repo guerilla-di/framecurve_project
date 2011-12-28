@@ -1,8 +1,0 @@
-.autotest
-History.txt
-Manifest.txt
-README.txt
-Rakefile
-bin/framecurve
-lib/framecurve.rb
-test/test_framecurve.rb
