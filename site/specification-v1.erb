@@ -11,8 +11,8 @@
 
 <p>A framecurve file is a file with ASCII text data and it <b>must</b> have a double extension of <tt>.framecurve.txt</tt></p>
 
-<p>Inside the framecurve file there is a number of <tt>records</tt>, each line is a record. Records <b>must</b> be delimited by the <tt>CRLF</tt>
-line delimiters to facilitate editing the file on Windows.</p>
+<p>Inside the framecurve file there is a number of <tt>records</tt>, each line is a record. Records <b>must</b> be delimited by either the <tt>CRLF</tt>
+line delimiters or the <tt>LF</tt> line delimiters. An application reading the framecurve <b>must</b> support both line delimiter formats.</p>
 
 <p>Each record can be either a <b>frame correlation record</b> or a <b>comment.</b> A comment is a line starting with a hashmark (<tt>#</tt>).</p>
 
@@ -23,7 +23,7 @@ line delimiters to facilitate editing the file on Windows.</p>
 <p>A <b>frame correlation record</b> represents a correlation point in time expressed by two fields separated by a TAB character, having the format of</p>
 
 <code>
-   [destination_frame_integer][TAB][source_frame_float][CRLF]
+   [destination_frame_integer][TAB][source_frame_float][CRLF|LF]
 </code>
 
 <p>The destination frame <b>must</b> be an integer value specifying the destination frame in the edit. The source frame <b>must</b> be an arbitrary precision
