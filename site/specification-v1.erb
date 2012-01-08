@@ -14,11 +14,19 @@
 <p>Inside the framecurve file there is a number of <tt>records</tt>, each line is a record. Records <b>must</b> be delimited by either the <tt>CRLF</tt>
 line delimiters or the <tt>LF</tt> line delimiters. An application reading the framecurve <b>must</b> support both line delimiter formats.</p>
 
+<p>An application reading the framecurve <b>must</b> be able to read the last record in the file even if it's not terminated with <tt>CRLF</tt> or <tt>LF</tt>
+delimiters.</p>
+
+<p>Each record might only contain valid UTF-8 codepoint sequences or ASCII as it's subset.</p> 
+
 <p>Each record can be either a <b>frame correlation record</b> or a <b>comment.</b> A comment is a line starting with a hashmark (<tt>#</tt>).</p>
 
-<code>
+<p>An application reading the file <b>must not</b> consider UTF-8 characters in records an error.</p>
+
+<code><pre>
 # This is a comment
-</code>
+# This is another comment with русские буквы in it
+</pre></code>
 
 <p>A <b>frame correlation record</b> represents a correlation point in time expressed by two fields separated by a TAB character, having the format of</p>
 
@@ -56,7 +64,7 @@ include the interpretation of the record columns as well. This is a recommended 
 
 <code><pre>
 # http://framecurve.org/specification-v1
-# at_frame use_frame_of_source
+# at_frame  use_frame_of_source
 12	34.5
 14	20.5
 </pre></code>

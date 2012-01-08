@@ -3,9 +3,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   background: #f0f0f0;
 }
-
-/* line 6, ../sass/styles.scss */
-#cnt {
+/* line 5, ../sass/styles.scss */
+body #cnt {
   background: #fafafa;
   border: 1px solid #c8c8c8;
   margin: auto;
@@ -15,7 +14,7 @@ body {
   line-height: 1.4em;
 }
 
-/* line 16, ../sass/styles.scss */
+/* line 18, ../sass/styles.scss */
 code {
   font-size: 0.9em;
   padding: 1em;
@@ -24,7 +23,7 @@ code {
   display: block;
 }
 
-/* line 23, ../sass/styles.scss */
+/* line 25, ../sass/styles.scss */
 code pre {
   display: block;
   padding: 0;
@@ -32,14 +31,14 @@ code pre {
   background: inherit;
 }
 
-/* line 29, ../sass/styles.scss */
+/* line 31, ../sass/styles.scss */
 #nav {
   width: 100%;
   overflow: auto;
   margin-bottom: 2em;
 }
 
-/* line 35, ../sass/styles.scss */
+/* line 37, ../sass/styles.scss */
 #nav span {
   display: block;
   float: left;
@@ -49,7 +48,7 @@ code pre {
   margin: 0;
 }
 
-/* line 43, ../sass/styles.scss */
+/* line 45, ../sass/styles.scss */
 #nav span a {
   text-decoration: none;
   text-transform: uppercase;
@@ -60,22 +59,23 @@ code pre {
   display: block;
 }
 
-/* line 53, ../sass/styles.scss */
+/* line 55, ../sass/styles.scss */
 #initiative {
   background: #0a0a0a;
   overflow: auto;
   color: white;
+  /* Span in the initiative for one company */
 }
-/* line 57, ../sass/styles.scss */
+/* line 60, ../sass/styles.scss */
 #initiative span {
   display: block;
   width: 24.9%;
-  border: 1px solid red;
   margin-left: -1px;
   float: left;
   text-align: center;
+  /* Links */
 }
-/* line 65, ../sass/styles.scss */
+/* line 67, ../sass/styles.scss */
 #initiative span a {
   color: inherit;
 }

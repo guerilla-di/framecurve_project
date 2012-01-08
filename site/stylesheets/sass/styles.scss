@@ -1,17 +1,19 @@
 body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	background: rgb(240, 240, 240);
+  
+  #cnt {
+  	background: rgb(250, 250, 250);
+  	border: 1px solid rgb(200, 200, 200);
+  	margin: auto;
+  	padding: 1em 3em;
+  	width: 70%;
+  	font-size: 1em;
+  	line-height: 1.4em;
+  }
+  
 }
 
-#cnt {
-	background: rgb(250, 250, 250);
-	border: 1px solid rgb(200, 200, 200);
-	margin: auto;
-	padding: 1em 3em;
-	width: 70%;
-	font-size: 1em;
-	line-height: 1.4em;
-}
 
 code {
 	font-size: 0.9em;
