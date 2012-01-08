@@ -8,3 +8,4 @@ coverage.*
 *.rbc
 .idea
 .yardoc
+site/.sass-cache
