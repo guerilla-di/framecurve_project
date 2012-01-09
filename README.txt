@@ -1,42 +1,17 @@
 = framecurve
 
-http://guerilla-di.org/framecurve
+http://framecurve.org/framecurve
 
 == DESCRIPTION:
 
-framecurve provides a simple, concrete, machine-and-human readable format for transferring frame correlation curves from computer to
+Framecurve is THE thing that will solve your speedramp problems and releive your eyematching sorrows.
 computer. 
 
-=== What is a framecurve?
+This repo contains the specification and app-specific scripts for Framecurve use.
 
-In the simplest terms, it's a linearly interpolated animation curve of "Use this frame of video or animation at that frame".
-For example, if you want to speed up some video that goes from frame 1 to frame 432 by 200%, you will have this as your framecurve:
+=== Requirements for hacking at the website
 
-    1 1.0
-    216 432.0
-
-This assumes that you interpolate the needed frame number linearly between these frames. If you want some speedups and slowdowns that's easy:
-
-    1 1.0
-    103 50.0
-    216 432.0
-
-
-== SYNOPSIS:
-
-  framecurve SomeTW.F_Kronos.spark # Outputs a textfile that is a framecurve file
-  framecurve -script Maya # Returns the script that can be pasted into the Maya script editor
-  framecurve -script C4D # Returns the script that can be used with C4D to read the file
-  framecurve -script Houdini # Returns the script that can be used with C4D to read the file
-
-== REQUIREMENTS:
-
-* ruby, rubygems to install the package
-* any package for which a framecurve plugin exists
-
-== INSTALL:
-
-* sudo gem install framecurve
+You will need Ruby with rubygems and serve. Use `bundle install' to get everything.
 
 == LICENSE:
 
