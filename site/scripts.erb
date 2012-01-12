@@ -2,48 +2,45 @@
 
 <h1>How to use a framecurve file in your application</h1>
 
-<p>Of course a standard meant for interop between applications is nothing
-	when the actual applications <i>don't provide.</i> So we offer a number
-	of readymade implementations that you can use to import framecurve files
-	into your application.</p>
+<p>Framecurve is supported in many applications through scripts and workflows that we provide. We took care to implement sane tools
+    for as many packages as we could. We hope that throughout the development of the standard vendors will also adopt
+    Framecurve as a standard and will provide out-of-the-box solutions for theur products.</p>
+    
+<h2>Current feature matrix</h2>
 
-<p>Is your app not listed here? If you are any good at scripting roll up
-	your sleeves and get to work. We would be glad to get some help.<p>
+<table class="featurematrix">
+    <tr><th>Application</th>                <th>Export from the application</th>        <th>Import into the application</th><tr>
+    <tr>
+        <td>Final Cut Pro 7.+ (not FCPX)</td>
+        <td>Yes, via XML and the <a href="http://gemcutter.org/gems/framecurve">framecurve ruby gem</a></td>
+        <td>-</td>
+    </tr>
 
-<h2>Nuke</h2>
-  <h3>Importing the curve</h3>
-  <p>To import a framecurve file into Nuke, select yuour animation channel and pick the "Import Time+ascii" option. This will properly import
-  a framecurve file into any animation channel you like.</p>
-  
-  <h3>Applying the curve</h3>
-  <p>To retime any animation channel, go to "Add expression" and between parentheses supply a handle to the knob containing your framecurve.</p>
-  <p>We also offer a sample Nuke script that shows how such a setup looks</p>
-  
-<h2>Maya</h2>
-  <h3>Importing and applying the curve</h3>
-  
-  <p>Download and source our framecurve script for Maya. This will add a Framecurve menu to your "Commands" menu. Pick an object that is animated, and pick this script. The framecurve will be applied as <i>input</i> to <i>every animation curve</i> that drives the object you selected.</p>
-  
-  <p>Here's how a standard Hypergraph hierarchy might look for an animated
-	object:</p>
-  
-  <img src="pics/maya_standard.png" />
-  
-  <p>Afte running the script, a framecurve will be created and plugged into the <i>input</i> connection of the animation curves of the object you retimed</p>
-  <img src="pics/maya_retimed.png" />
-  
-<h2>Houdini</h2>
-  <h3>Importing and applying the curve</h3>
-  
-  <p>Run <tt>framecurve --script houdini</tt> to get a Python script that creates a Framecurve gizmo. Run that in your chopnet, select the gizmo
-    and pick the framecurve file that you want to use. An animation curve will be created and </p>
+    <tr>
+        <td>Autodesk Flame, Smoke, Backdraft and Flare</td>
+        <td>Yes, via the <a href="http://gemcutter.org/gems/flame_channel_parser">flame_channel_parser ruby gem</a></td>
+        <td>Yes, via the <a href="http://gemcutter.org/gems/flame_channel_parser">flame_channel_parser ruby gem</a></td>
+    </tr>
 
-<h2>Flame</h2>
+    <tr>
+        <td>The Foundry Nuke</td>
+        <td>Yes, via the built-in "export value + ASCII" function</td>
+        <td>Yes, via the <a href="/scripts/nuke/applyFramecurve.py">framecurve python script</a></td>
+    </tr>
 
-<p>Run <tt>framecurve --to flame</tt>. This will emit a setup for the Timewarp module. Copy the "Frame" channel of the timewarp into, say, an Action setup,
-  name it "TIME_DRIVER" and make a copy of an object you want to timewarp. Then enter the following expression into the channel editor of that object:</p>
-  
-<code>eval(Axis1, TIME_DRIVER.position.x)</code>
+    <tr>
+        <td>Sidefx Houdini</td>
+        <td>Yes, via the provided Houdini OTL</td>
+        <td>-</a></td>
+    </tr>
 
-<p>substituting "Axis1" for the name of the object you've copied. This might be confusing for people who never used this kind of a setup so we
-  offer a simple Action setup to demonstrate a framecurve in action.</p>
+    <tr>
+        <td>Autodesk Maya</td>
+        <td>Yes, via the provided <a href="/scripts/maya/framecurveApplyTimewarp.mel">MEL script</td>
+        <td>-</a></td>
+    </tr>
+
+</table>
+
+<p>We hope to be able to expand the number of supporting applications in the future. If you implement framecurve support for a specific
+    application, please contact us so that we can include it into the offered packages here.</p>

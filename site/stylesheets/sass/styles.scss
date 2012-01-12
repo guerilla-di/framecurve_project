@@ -52,9 +52,17 @@ code pre {
 }
 
 #initiative {
-  background: rgb(10,10,10);
+  background: rgb(170,170,170);
   overflow: auto;
   color: white;
+  margin-left: -48px;
+  margin-right: -48px;
+  padding-bottom: 2em;
+  margin-bottom: -16px;
+  
+  h2 {
+    padding: 0 2em;
+  }
   /* Span in the initiative for one company */
   span {
     display: block;
@@ -64,8 +72,31 @@ code pre {
     text-align: center;
     /* Links */
     a {
+      display: block;
+      img {
+        margin: auto;
+        display: block;
+      }
+      b {
+        display: block;
+      }
       color: inherit;
     }
   }
 }
 
+/* Feature matrix */
+table.featurematrix {
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+  th, td {
+    border: 1px solid rgb(170,170,170);
+    padding: .5em;
+  }
+  
+  td:first-child {
+    background: rgb(190,190,190);
+  }
+  
+}
