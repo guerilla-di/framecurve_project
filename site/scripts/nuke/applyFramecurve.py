@@ -20,7 +20,7 @@ def organize_retime_tab(onNode):
 def apply_framecurve(inNode, toKnobName):
     pass
     
-# TODO - does not work yet!
+# This fails on Nuke < 6.3 but there ain't much we can do
 def make_keyframes_linear(curve):
     for key in curve.keys():
         print key.interpolation
@@ -38,7 +38,7 @@ def animate_framecurve_from_file(fc_path, to_node):
                 # Set the keyframe on the framecurve
                 to_node["framecurve"].setValueAt(use_frame, at_frame) #, index=1, view=1)
     
-    # Change the framecurve KFs to give linear interp - TODO this doesnt work yet
+    # Change the framecurve KFs to give linear interp as per spec
     make_keyframes_linear(to_node["framecurve"].animation(0))
 
 def apply_framecurve(toNode, framecurve_path):
