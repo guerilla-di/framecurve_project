@@ -1,0 +1,8 @@
+# Use .erb files as indexes
+DirectoryIndex index.html index.erb
+
+# Rewrite clean URLs without file to .erb
+RewriteEnable On
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}      -f
+RewriteRule ^ %{DOCUMENT_ROOT}%{REQUEST_URI}    [L]
+RewriteRule ^(.+)$ /$1.erb [L]
