@@ -69,13 +69,14 @@ code pre {
   margin-right: -48px;
   padding-bottom: 2em;
   margin-bottom: -16px;
+  margin-top: 2em;
   /* Span in the initiative for one company */
 }
-/* line 63, ../sass/styles.scss */
+/* line 64, ../sass/styles.scss */
 #initiative h2 {
   padding: 0 2em;
 }
-/* line 67, ../sass/styles.scss */
+/* line 68, ../sass/styles.scss */
 #initiative span {
   display: block;
   width: 24.9%;
@@ -84,33 +85,33 @@ code pre {
   text-align: center;
   /* Links */
 }
-/* line 74, ../sass/styles.scss */
+/* line 75, ../sass/styles.scss */
 #initiative span a {
   display: block;
   color: inherit;
 }
-/* line 76, ../sass/styles.scss */
+/* line 77, ../sass/styles.scss */
 #initiative span a img {
   margin: auto;
   display: block;
 }
-/* line 80, ../sass/styles.scss */
+/* line 81, ../sass/styles.scss */
 #initiative span a b {
   display: block;
 }
 
 /* Feature matrix */
-/* line 89, ../sass/styles.scss */
+/* line 90, ../sass/styles.scss */
 table.featurematrix {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* line 93, ../sass/styles.scss */
+/* line 94, ../sass/styles.scss */
 table.featurematrix th, table.featurematrix td {
   border: 1px solid #aaaaaa;
   padding: .5em;
 }
-/* line 98, ../sass/styles.scss */
+/* line 99, ../sass/styles.scss */
 table.featurematrix td:first-child {
   background: #bebebe;
 }
