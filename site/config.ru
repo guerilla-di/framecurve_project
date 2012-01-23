@@ -16,6 +16,9 @@ use Rack::ShowStatus      # Nice looking 404s and other messages
 use Rack::ShowExceptions  # Nice looking errors
 use Sass::Plugin::Rack    # Compile Sass on the fly
 
+# Make sure serve serves properly
+
+
 # We use Rack::Cascade and Rack::Directory on other platforms to
 # handle static assets
 run Rack::Cascade.new([
