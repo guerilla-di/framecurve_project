@@ -19,7 +19,13 @@ delimiters.</p>
 
 <p>Each record might only contain valid UTF-8 codepoint sequences or ASCII as it's subset.</p> 
 
-<p>Each record can be either a <b>frame correlation record</b> or a <b>comment.</b> A comment is a line starting with a hashmark (<tt>#</tt>).</p>
+<p>Each record can be either a <b>frame correlation record</b> or a <b>comment.</b></p>
+
+<p>A comment is a line starting with a hashmark (<tt>#</tt>), and only containing <tt>CRLF</tt> or <tt>LF</tt> at the end of the line</p>
+
+<code>
+   #[arbitrary UTF-8 codepoints except CR and LF][CRLF|LF]
+</code>
 
 <p>An application reading the file <b>must not</b> consider UTF-8 characters in comments an error.</p>
 
