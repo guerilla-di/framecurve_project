@@ -166,6 +166,10 @@ global proc framecurve.applyTimewarp() {
 	}
 	fclose $fId;
 	
+	// Constant extrapolation
+	setInfinity -pri constant;
+    setInfinity -poi constant;
+    
 	// And reenable them
 	framecurve.enableImagePlanes();
 	
