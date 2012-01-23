@@ -7,6 +7,9 @@ AddType text/css .scss
 # And serve SVG
 AddType image/svg+xml .svg
 
+# Serve ERB as if it were HTML
+AddType text/html .erb
+
 # Rewrite clean URLs without file to .erb
 # RewriteEnable On
 # RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}      -f
