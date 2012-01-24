@@ -9,13 +9,14 @@ body {
   background: #fafafa;
   border: 1px solid #c8c8c8;
   margin: auto;
+  margin-bottom: 2em;
   padding: 1em 3em;
   width: 70%;
   font-size: 1em;
   line-height: 1.4em;
 }
 
-/* line 17, ../sass/styles.scss */
+/* line 18, ../sass/styles.scss */
 code {
   font-size: 0.9em;
   padding: 1em;
@@ -24,7 +25,7 @@ code {
   display: block;
 }
 
-/* line 24, ../sass/styles.scss */
+/* line 25, ../sass/styles.scss */
 code pre {
   display: block;
   padding: 0;
@@ -32,14 +33,14 @@ code pre {
   background: inherit;
 }
 
-/* line 30, ../sass/styles.scss */
+/* line 31, ../sass/styles.scss */
 #nav {
   width: 100%;
   overflow: auto;
   margin-bottom: 2em;
 }
 
-/* line 36, ../sass/styles.scss */
+/* line 37, ../sass/styles.scss */
 #nav span {
   display: block;
   float: left;
@@ -49,7 +50,7 @@ code pre {
   margin: 0;
 }
 
-/* line 44, ../sass/styles.scss */
+/* line 45, ../sass/styles.scss */
 #nav span a {
   text-decoration: none;
   text-transform: uppercase;
@@ -60,23 +61,23 @@ code pre {
   display: block;
 }
 
-/* line 54, ../sass/styles.scss */
+/* line 55, ../sass/styles.scss */
 #initiative {
   background: #aaaaaa;
   overflow: auto;
   color: white;
   margin-left: -48px;
   margin-right: -48px;
-  padding-bottom: 2em;
+  padding-bottom: .5em;
   margin-bottom: -16px;
   margin-top: 2em;
   /* Span in the initiative for one company */
 }
-/* line 64, ../sass/styles.scss */
+/* line 65, ../sass/styles.scss */
 #initiative h2 {
   padding: 0 2em;
 }
-/* line 68, ../sass/styles.scss */
+/* line 69, ../sass/styles.scss */
 #initiative span {
   display: block;
   width: 24.9%;
@@ -85,44 +86,44 @@ code pre {
   text-align: center;
   /* Links */
 }
-/* line 75, ../sass/styles.scss */
+/* line 76, ../sass/styles.scss */
 #initiative span a {
   display: block;
   color: inherit;
 }
-/* line 77, ../sass/styles.scss */
+/* line 78, ../sass/styles.scss */
 #initiative span a img {
   margin: auto;
   display: block;
 }
-/* line 81, ../sass/styles.scss */
+/* line 82, ../sass/styles.scss */
 #initiative span a b {
   display: block;
 }
-/* line 88, ../sass/styles.scss */
+/* line 89, ../sass/styles.scss */
 #initiative p {
   overflow: auto;
 }
-/* line 92, ../sass/styles.scss */
+/* line 93, ../sass/styles.scss */
 #initiative .license {
   width: 50%;
   display: block;
-  margin: auto;
+  margin: 1em auto 0 auto;
   font-size: 1em;
 }
 
 /* Feature matrix */
-/* line 101, ../sass/styles.scss */
+/* line 102, ../sass/styles.scss */
 table.featurematrix {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* line 105, ../sass/styles.scss */
+/* line 106, ../sass/styles.scss */
 table.featurematrix th, table.featurematrix td {
   border: 1px solid #aaaaaa;
   padding: .5em;
 }
-/* line 110, ../sass/styles.scss */
+/* line 111, ../sass/styles.scss */
 table.featurematrix td:first-child {
   background: #bebebe;
 }
