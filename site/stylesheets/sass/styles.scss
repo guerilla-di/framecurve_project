@@ -60,7 +60,7 @@ code pre {
   padding-bottom: 2em;
   margin-bottom: -16px;
   margin-top: 2em;
-  
+
   h2 {
     padding: 0 2em;
   }
@@ -83,6 +83,17 @@ code pre {
       }
       color: inherit;
     }
+  }
+  
+  p { 
+    overflow: auto;
+  }
+  
+  .license {
+    width: 50%;
+    display: block;
+    margin: auto;
+    font-size: 1em;
   }
 }
 

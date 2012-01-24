@@ -53,7 +53,7 @@ code pre {
 #nav span a {
   text-decoration: none;
   text-transform: uppercase;
-  font-family: "Lucida Grande", Verdana;
+  font-family: "Lucida Grande", Verdana, sans-serif;
   border: 1px solid #c8c8c8;
   border-bottom-width: 5px;
   padding: .75em 0;
@@ -99,19 +99,30 @@ code pre {
 #initiative span a b {
   display: block;
 }
+/* line 88, ../sass/styles.scss */
+#initiative p {
+  overflow: auto;
+}
+/* line 92, ../sass/styles.scss */
+#initiative .license {
+  width: 50%;
+  display: block;
+  margin: auto;
+  font-size: 1em;
+}
 
 /* Feature matrix */
-/* line 90, ../sass/styles.scss */
+/* line 101, ../sass/styles.scss */
 table.featurematrix {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* line 94, ../sass/styles.scss */
+/* line 105, ../sass/styles.scss */
 table.featurematrix th, table.featurematrix td {
   border: 1px solid #aaaaaa;
   padding: .5em;
 }
-/* line 99, ../sass/styles.scss */
+/* line 110, ../sass/styles.scss */
 table.featurematrix td:first-child {
   background: #bebebe;
 }
