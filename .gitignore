@@ -9,4 +9,5 @@ coverage.*
 .idea
 .yardoc
 site/.sass-cache
+site/stylesheets/css
 site/html
