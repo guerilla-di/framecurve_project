@@ -10,3 +10,5 @@ AddType image/svg+xml .svg
 # Serve ERB as if it were HTML
 AddType text/html .erb
 
+# This URL is in Google
+Redirect Permanent /specification-v1.html /specification-v1
