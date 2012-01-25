@@ -66,10 +66,7 @@
 			}
 			return false;
 		}
-		// 
-		// This function puts up a modal dialog asking for a scale_factor.
-		// Once the user enters a value, the dialog closes, and the script scales the comp.
-		// 
+		
 		function BuildAndShowUI(thisObj)
 		{
 			var f = File.openDialog("Select a framecurve file to open.", onlyFramecurveFiles, false);
