@@ -40,7 +40,8 @@ delimiters.</p>
    [destination_frame_integer][TAB][source_frame_float][CRLF|LF]
 </code>
 
-<p>The destination frame <b>must</b> be an integer value specifying the destination frame in the edit. The source frame <b>must</b> be an arbitrary precision
+<p>The destination frame <b>must</b> be an integer value specifying the destination frame in the edit of the clip the timewarp is applied to. The application applying the timewarp
+<b>should assume</b> that the first destination frame of the clip is frame 1 (the timewarp is applied on the clip level, not on timeline level). The source frame <b>must</b> be an arbitrary precision
 decimal floating point value representing the frame that will be shown at this frame.</p>
 
 <p>The destination frame values <b>must</b> be consecutive (the destination frame number has to increase from record to record). This is not valid:</p>
