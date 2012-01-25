@@ -1,3 +1,6 @@
+# Framecurve scripts are subject to MIT license
+# http://framecurve.org/scripts/#license
+
 import c4d
 
 # framecurve python C4D implementation

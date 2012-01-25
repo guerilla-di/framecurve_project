@@ -3,6 +3,8 @@ framecurve importer
 v0.5, UNTESTED , TRANSFORMS ONLY!
 Koen Hofmeester 2011
 
+Framecurve scripts are subject to MIT license
+http://framecurve.org/scripts/#license
 
 TODO:
 -TRANSFORMS ONLY!, need to include fov and other shiz 

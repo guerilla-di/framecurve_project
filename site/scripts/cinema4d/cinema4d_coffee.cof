@@ -1,6 +1,8 @@
 // framecurve COFFEE implementation
 // for more info, see http://framecurve.org
 //
+// Framecurve scripts are subject to MIT license
+// http://framecurve.org/scripts/#license
 //
 //
 // Attention! Due to the way that COFFEE is fucked up, this might have rounding errors

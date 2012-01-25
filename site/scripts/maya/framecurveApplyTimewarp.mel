@@ -4,6 +4,9 @@
     Body and soul of the framecurve concept.
     For more info, see http://framecurve.org
     
+    Framecurve scripts are subject to MIT license
+    http://framecurve.org/scripts/#license
+    
     Usage: in File put a framecurve text file. In Object put object whose animation curves will be timewarped
     
     run with: framecurve.timewarpDialog()
