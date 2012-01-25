@@ -117,13 +117,14 @@ code pre {
 table.featurematrix {
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #aaaaaa;
 }
-/* line 106, ../sass/styles.scss */
+/* line 107, ../sass/styles.scss */
 table.featurematrix th, table.featurematrix td {
   border: 1px solid #aaaaaa;
   padding: .5em;
 }
-/* line 111, ../sass/styles.scss */
+/* line 112, ../sass/styles.scss */
 table.featurematrix td:first-child {
   background: #bebebe;
 }
