@@ -5,7 +5,6 @@ http://framecurve.org/framecurve
 == DESCRIPTION:
 
 Framecurve is THE thing that will solve your speedramp problems and releive your eyematching sorrows.
-computer. 
 
 This repo contains the specification and app-specific scripts for Framecurve use.
 
