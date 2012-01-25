@@ -5,6 +5,9 @@ import c4d
 
 # framecurve python C4D implementation
 # for more info, see http://framecurve.org
+# Framecurve scripts are subject to MIT license
+# http://framecurve.org/scripts/#license
+
 def main():
     # Which frame to sample. Grab this from the userattr of the tag!
     obj = op.GetObject()
