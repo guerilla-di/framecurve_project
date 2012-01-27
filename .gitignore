@@ -11,3 +11,7 @@ coverage.*
 site/.sass-cache
 site/stylesheets/css
 site/html
+site/scripts/maya
+site/scripts/houdini
+site/scripts/aftereffects
+site/scripts/nuke
