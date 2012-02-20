@@ -1,10 +1,9 @@
 require "rubygems"
 require "bundler"
 require "fileutils"
-
 Dir.chdir(File.dirname(__FILE__)  + "/site")
 
-Bundler.require
+Bundler.require(:default)
 
 # http://stackoverflow.com/questions/1113422/how-to-bypass-ssl-certificate-verification-in-open-uri
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
@@ -27,7 +26,7 @@ class Package
     end
 
     def image(link, title, alt_text)
-      tpl = '<img src="%s" title="%s" alt="%s" />'
+      tpl = '<img style="max-width: 912px" src="%s" title="%s" alt="%s" />'
       tpl % [rewrite(link), title, alt_text]
     end
 
